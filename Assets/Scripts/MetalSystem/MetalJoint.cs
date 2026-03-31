@@ -14,7 +14,6 @@ public class MetalJoint : MonoBehaviour
 {
     
     public float currentTemperature = 0f;
-    [ReadOnly(true)]
     private float width = 0f;
     private float height = 0f;
     private float volume = 0f;
@@ -31,9 +30,56 @@ public class MetalJoint : MonoBehaviour
     {
         parentConstraint = GetComponent<ParentConstraint>();
         metalController = GetComponentInParent<MetalController>();
-        width = transform.localScale.z;
-        height = transform.localScale.y;
+        BoxCollider collider = GetComponent<BoxCollider>();
+
+        width = collider.size.z;
+        height = collider.size.y;
         volume = width * height;
+    }
+    
+    [ContextMenu("Create Parent Joints")]
+    private void CreateParentJointsAndFillNeighbours()
+    {
+        if (rightNeighborJoint == null)
+        {
+            int index = transform.GetSiblingIndex() - 1;
+            if (index < 0)
+            {
+                return;
+            }
+            
+            rightNeighborJoint = transform.parent.GetChild(index).GetComponent<MetalJoint>();
+        }
+
+        ParentConstraint neighborConstraint = rightNeighborJoint.GetComponent<ParentConstraint>();
+
+        if (neighborConstraint == null)
+        {
+            neighborConstraint = rightNeighborJoint.gameObject.AddComponent<ParentConstraint>();
+        }
+
+        ConstraintSource source = new ConstraintSource
+        {
+            sourceTransform = transform,
+            weight = 1f
+        };
+
+        neighborConstraint.AddSource(source);
+
+        // Keep the current position and rotation
+        Vector3 initialPosition = neighborConstraint.transform.position;
+        Quaternion initialRotation = neighborConstraint.transform.rotation;
+
+        neighborConstraint.constraintActive = true;
+
+        // Calculate and set offsets to maintain current world transform
+        Vector3 translationOffset = initialPosition - transform.position;
+        Quaternion rotationOffset = Quaternion.Inverse(source.sourceTransform.rotation) * initialRotation;
+
+        neighborConstraint.SetTranslationOffset(0, translationOffset);
+        neighborConstraint.SetRotationOffset(0, rotationOffset.eulerAngles);
+
+        neighborConstraint.locked = true;
     }
 
     public void AddTemperatureFixed(float temperature)
@@ -62,8 +108,8 @@ public class MetalJoint : MonoBehaviour
                 width += deltaWidth;
                 height -= deltaHeight;
                 transform.localScale += new Vector3(0, -deltaHeight, deltaWidth);
-                MoveToRight(deltaWidth);
-                rightNeighborJoint.MoveToRight(deltaWidth);
+                MoveToRight(deltaWidth/2);
+                rightNeighborJoint?.MoveToRight(deltaWidth/2);
             }
         }
         // Check "angle" of metal to figure out tilt

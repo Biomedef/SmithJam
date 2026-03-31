@@ -432,38 +432,6 @@ MonoBehaviour:
   tiltAngle: 2
   movementSpeed: 10
   moveMetalAction: {fileID: 0}
---- !u!1 &581148168 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8671098159509320592, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-  m_PrefabInstance: {fileID: 4415970737027191536}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &581148172
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 581148168}
-  serializedVersion: 5
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_CenterOfMass: {x: 0, y: 0, z: 0}
-  m_InertiaTensor: {x: 1, y: 1, z: 1}
-  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ImplicitCom: 1
-  m_ImplicitTensor: 1
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 122
-  m_CollisionDetection: 0
 --- !u!4 &816478216 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4360583884618362840, guid: 75579cb14ef4c35449824a83bf540a50, type: 3}
@@ -615,50 +583,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2820187388512775020, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-      propertyPath: currentTemperature
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 3548589366514546029, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-      propertyPath: currentTemperature
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 3871813575726127382, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-      propertyPath: currentTemperature
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 3877563410810144279, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-      propertyPath: currentTemperature
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 4032075754874407077, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-      propertyPath: currentTemperature
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 4467920940279959055, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-      propertyPath: tiltAngle
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 4467920940279959055, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-      propertyPath: movementSpeed
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4467920940279959055, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-      propertyPath: moveMetalAction
-      value: 
-      objectReference: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-    - target: {fileID: 4467920940279959055, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-      propertyPath: tiltMetalAction
-      value: 
-      objectReference: {fileID: -1680190386980627800, guid: 052faaac586de48259a63d0c4782560b, type: 3}
-    - target: {fileID: 4536523279581392834, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-      propertyPath: currentTemperature
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 5035782903549981695, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-      propertyPath: currentTemperature
-      value: 19
-      objectReference: {fileID: 0}
     - target: {fileID: 5964952197084827089, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -699,30 +623,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6406258764955207657, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-      propertyPath: currentTemperature
-      value: 19
-      objectReference: {fileID: 0}
-    - target: {fileID: 8248281378487721424, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-      propertyPath: currentTemperature
-      value: 19
-      objectReference: {fileID: 0}
     - target: {fileID: 8671098159509320592, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
       propertyPath: m_Name
       value: Metal
       objectReference: {fileID: 0}
-    - target: {fileID: 8868036421727907433, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-      propertyPath: currentTemperature
-      value: 19
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 4423375708116630909, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
+    m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 8671098159509320592, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 581148172}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1502866c28f181e408b2e7df7d5b0afe, type: 3}
 --- !u!1001 &5577799892498689258
 PrefabInstance:
@@ -732,6 +640,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 393713002198700080, guid: cc4fcce4af489ee47a0c39b673ba63c9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 911518426449500651, guid: cc4fcce4af489ee47a0c39b673ba63c9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2110685170124196209, guid: cc4fcce4af489ee47a0c39b673ba63c9, type: 3}
       propertyPath: m_ImplicitCom
       value: 0
@@ -740,13 +656,29 @@ PrefabInstance:
       propertyPath: m_ImplicitTensor
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4778236508086702068, guid: cc4fcce4af489ee47a0c39b673ba63c9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 5053153748432813169, guid: cc4fcce4af489ee47a0c39b673ba63c9, type: 3}
       propertyPath: hitForce
-      value: 10
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 6827918965200715071, guid: cc4fcce4af489ee47a0c39b673ba63c9, type: 3}
       propertyPath: m_Name
       value: HammerSystem
+      objectReference: {fileID: 0}
+    - target: {fileID: 7764125439111611568, guid: cc4fcce4af489ee47a0c39b673ba63c9, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928543582274721572, guid: cc4fcce4af489ee47a0c39b673ba63c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.193
+      objectReference: {fileID: 0}
+    - target: {fileID: 7928543582274721572, guid: cc4fcce4af489ee47a0c39b673ba63c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.458
       objectReference: {fileID: 0}
     - target: {fileID: 8398310576296744830, guid: cc4fcce4af489ee47a0c39b673ba63c9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -787,6 +719,14 @@ PrefabInstance:
     - target: {fileID: 8398310576296744830, guid: cc4fcce4af489ee47a0c39b673ba63c9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714836205074017172, guid: cc4fcce4af489ee47a0c39b673ba63c9, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.19299999
+      objectReference: {fileID: 0}
+    - target: {fileID: 8714836205074017172, guid: cc4fcce4af489ee47a0c39b673ba63c9, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 1.458
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -859,6 +799,10 @@ PrefabInstance:
     - target: {fileID: 5141987415475470663, guid: 75579cb14ef4c35449824a83bf540a50, type: 3}
       propertyPath: m_Name
       value: QuencingTank
+      objectReference: {fileID: 0}
+    - target: {fileID: 5141987415475470663, guid: 75579cb14ef4c35449824a83bf540a50, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5406852570833716262, guid: 75579cb14ef4c35449824a83bf540a50, type: 3}
       propertyPath: currentTemperature
