@@ -19,14 +19,12 @@ public class MetalJoint : MonoBehaviour
     private float volume = 0f;
     private float tilt = 0f;
 
-
     [SerializeField]
     private MetalJoint rightNeighborJoint;
 
     private ParentConstraint parentConstraint;
     private MetalController metalController;
     private float meltSmoothingMultiplier = 0;
-
 
     private void Start()
     {
