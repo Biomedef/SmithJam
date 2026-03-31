@@ -11,38 +11,30 @@ public enum TiltDirection
 
 public class MetalJoint : MonoBehaviour
 {
+    
+    public float currentTemperature = 0f;
     [ReadOnly(true)]
-    private float currentTemperature = 0f;
     private float width = 0f;
     private float height = 0f;
+    private float volume = 0f;
     private float tilt = 0f;
-    //Material info
-    [SerializeField]
-    private float minWorkingTemperature = 0f;
-    [SerializeField]
-    private float deformTemperature = 0f;
-    [SerializeField]
-    private float deformSpeed = 0.1f;
-    [SerializeField]
-    private float breakingHeightThreshold = 0f;
-    [SerializeField]
-    private float breakingTiltThreshold = 0f;
-    [SerializeField]
-    private float cooldownSpeed = 1f;
-    [SerializeField]
-    private float heatUpSpeed = 1f;
 
 
     [SerializeField]
     private MetalJoint rightNeighborJoint;
 
     private ParentConstraint parentConstraint;
+    private MetalController metalController;
     private float meltSmoothingMultiplier = 0;
 
 
     private void Start()
     {
         parentConstraint = GetComponent<ParentConstraint>();
+        metalController = GetComponentInParent<MetalController>();
+        width = transform.localScale.z;
+        height = transform.localScale.y;
+        volume = width * height;
     }
 
     public void AddTemperatureFixed(float temperature)
@@ -53,13 +45,27 @@ public class MetalJoint : MonoBehaviour
     public void ApplyHeat(float heat)
     {
         float temperatureDifference = heat - currentTemperature;
-        currentTemperature += temperatureDifference * heatUpSpeed * Time.deltaTime;
+        currentTemperature += temperatureDifference * metalController.heatUpSpeed * Time.deltaTime;
     }
 
-    public void HitWithHammer()
+    public void HitWithHammer(float heatKinetic)
     {
         // Should add a bit of temperature when hitting AddTemperatureFixed
+        AddTemperatureFixed(heatKinetic);
         // Check temperature to how much deform should happen
+        if (currentTemperature >= metalController.minWorkingTemperature)
+        {
+            float t = (currentTemperature - metalController.minWorkingTemperature) / (metalController.deformTemperature - metalController.minWorkingTemperature);
+            float deltaHeight = Mathf.Lerp(0, 1, t) * metalController.heightDeformFactor;
+            if(height - deltaHeight > 0)
+            {
+                float deltaWidth = volume / (height - deltaHeight) - width;
+                width += deltaWidth;
+                height -= deltaHeight;
+                transform.localScale += new Vector3(0, -deltaHeight, deltaWidth);
+                MoveToRight(deltaWidth);
+            }
+        }
         // Check "angle" of metal to figure out tilt
     }
 
@@ -67,12 +73,24 @@ public class MetalJoint : MonoBehaviour
 
     public void Melt()
     {
-        ApplyTilt(Time.deltaTime * deformSpeed * meltSmoothingMultiplier, TiltDirection.Down);
+        ApplyTilt(Time.deltaTime * metalController.deformSpeed * meltSmoothingMultiplier, TiltDirection.Down);
     }
 
     public void MoveToRight(float delta)
     {
+        if (parentConstraint != null && parentConstraint.constraintActive && parentConstraint.sourceCount > 0)
+        {
+            Vector3 currentTranslationOffsetOffset = parentConstraint.GetTranslationOffset(0);
         
+            Vector3 newTranslation = currentTranslationOffsetOffset += new Vector3(0, 0, delta / 2f);
+            parentConstraint.SetTranslationOffset(0, newTranslation);
+        }
+        else
+        {
+            // Modify local rotation directly
+            transform.localPosition += new Vector3(0, 0, delta / 2f);
+        }
+        //rightNeighborJoint.MoveToRight(delta / 2f);
     }
 
 
@@ -127,7 +145,7 @@ public class MetalJoint : MonoBehaviour
 
     private void UpdateTemperature()
     {
-        currentTemperature -= cooldownSpeed * currentTemperature * Time.deltaTime;
+        currentTemperature -= metalController.cooldownSpeed * currentTemperature * Time.deltaTime;
 
         if (currentTemperature < 0)
         {
@@ -137,7 +155,7 @@ public class MetalJoint : MonoBehaviour
 
     private void UpdateMelting()
     {
-        float targetMultiplier = currentTemperature >= deformTemperature ? 1f : 0f;
+        float targetMultiplier = currentTemperature >= metalController.deformTemperature ? 1f : 0f;
         meltSmoothingMultiplier = Mathf.MoveTowards(meltSmoothingMultiplier, targetMultiplier, Time.deltaTime);
 
         if (meltSmoothingMultiplier > 0)
