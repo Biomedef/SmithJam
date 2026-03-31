@@ -5,6 +5,7 @@ using UnityEngine.Animations;
 
 public enum TiltDirection
 {
+    Idle,
     Up,
     Down
 }
@@ -62,9 +63,12 @@ public class MetalJoint : MonoBehaviour
                 height -= deltaHeight;
                 transform.localScale += new Vector3(0, -deltaHeight, deltaWidth);
                 MoveToRight(deltaWidth);
+                rightNeighborJoint.MoveToRight(deltaWidth);
             }
         }
         // Check "angle" of metal to figure out tilt
+        if(metalController.tiltDirection != TiltDirection.Idle)
+            ApplyTilt(Time.deltaTime * metalController.tiltAngle, metalController.tiltDirection);
     }
 
     public void Break() { }
@@ -88,7 +92,7 @@ public class MetalJoint : MonoBehaviour
             // Modify local rotation directly
             transform.localPosition += new Vector3(0, 0, delta / 2f);
         }
-        //rightNeighborJoint.MoveToRight(delta / 2f);
+       
     }
 
 
