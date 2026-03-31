@@ -487,7 +487,7 @@ HingeJoint:
   m_ConnectedAnchor: {x: 0, y: 0, z: 0}
   m_UseSpring: 1
   m_Spring:
-    spring: 200
+    spring: 2
     damper: 0
     targetPosition: 0
   m_UseMotor: 0
@@ -762,7 +762,7 @@ MonoBehaviour:
   hammerTransform: {fileID: 8714836205074017172}
   hammerRigidbody: {fileID: 2110685170124196209}
   hammerHingeJoint: {fileID: 8973321851995526445}
-  hitForce: 100
+  hitForce: 300
   hitHammerAction: {fileID: 1120369429361536294, guid: 052faaac586de48259a63d0c4782560b, type: 3}
 --- !u!1 &7764125439111611568
 GameObject:
